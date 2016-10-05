@@ -1,5 +1,9 @@
 ---
 title: {{ title }}
 date: {{ date }}
-tags:
+categories: 
+	- html5
+tags: 
+	- html5
+comments: true
 ---
