@@ -1,8 +1,9 @@
-wsdever.github.io.backup
+本项目介绍
 ================
 
 博客站点备份，无其它用处。
-预览 [我的博客](http://wsdever.github.io/)。
+预览 [我的博客](http://wsdever.github.io/),
+若打不开时请尝试打开 [备用博客](http://wslover.66ghz.com/)
 学习尚可，切勿做其它之用！
 # 学习基础
 基于 nodejs + hexo + less 等搭建。

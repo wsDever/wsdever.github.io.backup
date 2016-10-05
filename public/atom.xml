@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wsdever.github.io/"/>
-  <updated>2016-10-01T13:17:23.051Z</updated>
+  <updated>2016-10-01T13:57:54.796Z</updated>
   <id>http://wsdever.github.io/</id>
   
   <author>
@@ -14,20 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>20150321</title>
-    <link href="http://wsdever.github.io/2016/10/01/20150321/"/>
-    <id>http://wsdever.github.io/2016/10/01/20150321/</id>
-    <published>2016-10-01T13:17:23.000Z</published>
-    <updated>2016-10-01T13:17:23.051Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>html5-canvas-模仿绘制360水晶球形进度条</title>
@@ -122,11 +108,46 @@
   </entry>
   
   <entry>
+    <title>less中使用css3的calc的正确写法</title>
+    <link href="http://wsdever.github.io/2015/05/01/20150321/"/>
+    <id>http://wsdever.github.io/2015/05/01/20150321/</id>
+    <published>2015-05-01T13:17:23.000Z</published>
+    <updated>2016-10-05T09:27:40.470Z</updated>
+    
+    <content type="html"><![CDATA[<p>作为一个前端开发者，现在less或者scss已是不可或缺的技能。会了这个技能能节省出许多写css的时间。</p>
+<h3 id="普通计算"><a href="#普通计算" class="headerlink" title="普通计算"></a>普通计算</h3><p>最近在写自己的网站的时候，由于对less的认识不深入，写了以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@endwidth:calc(50% - 50px);</div></pre></td></tr></table></figure></p>
+<p>结果，less编译的时候把这玩意当成运算式给直接计算了，成了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@endwidth:calc(0%);</div></pre></td></tr></table></figure></p>
+<p>于是，去查了一下less的用法才发现，原来是less的运算和calc的用法有重叠。所以应该把less编译这一次的计算给去掉。<br>正确写法应该是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@endwidth:calc(~&quot;50% - 50px&quot;);</div></pre></td></tr></table></figure></p>
+<p>也就是在calc里面加上 ~ 。</p>
+<h3 id="有变量参与计算"><a href="#有变量参与计算" class="headerlink" title="有变量参与计算"></a>有变量参与计算</h3><p>以上是可以了，担是当把 50px 换成另一个变量时，又编译出错了。也就是这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">left: calc(~&quot;50% + @endwidth&quot; );</div></pre></td></tr></table></figure></p>
+<p>由于 ~ 能把less编译的这一次计算给去掉，而 @endwith 的值，需要计算两次，所以在去掉的时候，对@endwidth的计算不能去掉。<br>所以应该把 @endwidth 放在 ~ 的范围外面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">left: calc(~&quot;50% +&quot; @endwidth);</div></pre></td></tr></table></figure></p>
+<h3 id="多变量连续计算"><a href="#多变量连续计算" class="headerlink" title="多变量连续计算"></a>多变量连续计算</h3><p>有了上面的解析，多变量计算就明白了，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@gap:10px;</div><div class="line">.init(@i)</div><div class="line">&#123;</div><div class="line">    left:calc(~&quot;50% -&quot;  @gap * @i ~&quot;-&quot; (@i * 2) * 50px) ;</div><div class="line">&#125;</div><div class="line">.box&#123;</div><div class="line">	.init(2);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>也就是，对需要去掉一次计算的(包括计算符)，需要放在 ~ 中，而需要在less编译的时候就计算一次的变量(或者常值)，直接放在 ~ 的范围外面。<br>编译结果，在css文件中可以看到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.box&#123;</div><div class="line">	left:calc( 50% - 200px )</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>calc是css3中一个非常有用的东东，但与less配合使用的时候，需要注意less编译时候的计算问题，根据需要是否需要去掉。其作法就是在不需要less编译的部分使用 ~ 包裹起来，而需要计算的则放在 ~ 的外在，特别需要注意的是运算符是否也需要包含。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作为一个前端开发者，现在less或者scss已是不可或缺的技能。会了这个技能能节省出许多写css的时间。&lt;/p&gt;
+&lt;h3 id=&quot;普通计算&quot;&gt;&lt;a href=&quot;#普通计算&quot; class=&quot;headerlink&quot; title=&quot;普通计算&quot;&gt;&lt;/a&gt;普通计算&lt;/h3&gt;&lt;p&gt;最近
+    
+    </summary>
+    
+      <category term="css" scheme="http://wsdever.github.io/categories/css/"/>
+    
+    
+      <category term="css" scheme="http://wsdever.github.io/tags/css/"/>
+    
+      <category term="less" scheme="http://wsdever.github.io/tags/less/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Jquery无法修改input的type属性的替代解决方法</title>
     <link href="http://wsdever.github.io/2015/03/24/20150324/"/>
     <id>http://wsdever.github.io/2015/03/24/20150324/</id>
     <published>2015-03-24T02:07:07.000Z</published>
-    <updated>2016-10-01T13:57:54.795Z</updated>
+    <updated>2016-10-05T08:50:12.554Z</updated>
     
     <content type="html"><![CDATA[<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>需要实现的效果：一个输入框，当输入框未获得焦点的时候，显示为 “请输入密码”；<br>当输入内容并失去焦点的时候，输入内容显示为” <strong>*</strong> ”，如果没有输入仍然显示“请输入密码”,通常做法是：</p>
 <ol>

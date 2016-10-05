@@ -3,23 +3,32 @@
 <head>
   <meta charset="utf-8">
   
-  <title>20150321 | Hexo | My GitHub Blog !</title>
+  <title>less中使用css3的calc的正确写法 | Hexo | My GitHub Blog !</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="">
-  <meta name="description" content="None">
+  <meta name="keywords" content="css,less">
+  <meta name="description" content="作为一个前端开发者，现在less或者scss已是不可或缺的技能。会了这个技能能节省出许多写css的时间。
+普通计算最近在写自己的网站的时候，由于对less的认识不深入，写了以下代码：1@endwidth:calc(50% - 50px);
+结果，less编译的时候把这玩意当成运算式给直接计算了，成了1@endwidth:calc(0%);
+于是，去查了一下less的用法才发现，原来是less的运算">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20150321">
-<meta property="og:url" content="http://wsdever.github.io/2016/10/01/20150321/index.html">
+<meta property="og:title" content="less中使用css3的calc的正确写法">
+<meta property="og:url" content="http://wsdever.github.io/2015/05/01/20150321/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="None">
-<meta property="og:updated_time" content="2016-10-01T13:17:23.051Z">
+<meta property="og:description" content="作为一个前端开发者，现在less或者scss已是不可或缺的技能。会了这个技能能节省出许多写css的时间。
+普通计算最近在写自己的网站的时候，由于对less的认识不深入，写了以下代码：1@endwidth:calc(50% - 50px);
+结果，less编译的时候把这玩意当成运算式给直接计算了，成了1@endwidth:calc(0%);
+于是，去查了一下less的用法才发现，原来是less的运算">
+<meta property="og:updated_time" content="2016-10-05T09:27:40.470Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="20150321">
-<meta name="twitter:description" content="None">
+<meta name="twitter:title" content="less中使用css3的calc的正确写法">
+<meta name="twitter:description" content="作为一个前端开发者，现在less或者scss已是不可或缺的技能。会了这个技能能节省出许多写css的时间。
+普通计算最近在写自己的网站的时候，由于对less的认识不深入，写了以下代码：1@endwidth:calc(50% - 50px);
+结果，less编译的时候把这玩意当成运算式给直接计算了，成了1@endwidth:calc(0%);
+于是，去查了一下less的用法才发现，原来是less的运算">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -110,7 +119,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">20150321</div>
+        <div class="flex-col header-title ellipsis">less中使用css3的calc的正确写法</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -127,13 +136,15 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">20150321</h1>
+    <h1 class="author">less中使用css3的calc的正确写法</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-10-01T13:17:23.000Z" itemprop="datePublished" class="page-time">
-  2016-10-01
+            <time datetime="2015-05-01T13:17:23.000Z" itemprop="datePublished" class="page-time">
+  2015-05-01
 </time>
 
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/css/">css</a></li></ul>
 
         
     </h5>
@@ -145,6 +156,8 @@
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meta flex-row">
         
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/less/">less</a></li></ul>
+
     </div>
     <div class="post-body">
         <aside class="post-widget" id="post-widget">
@@ -153,7 +166,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#普通计算"><span class="post-toc-text">普通计算</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#有变量参与计算"><span class="post-toc-text">有变量参与计算</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多变量连续计算"><span class="post-toc-text">多变量连续计算</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-text">总结</span></a></li></ol>
             </nav>
             
         </aside>
@@ -161,7 +174,17 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            
+            <p>作为一个前端开发者，现在less或者scss已是不可或缺的技能。会了这个技能能节省出许多写css的时间。</p>
+<h3 id="普通计算"><a href="#普通计算" class="headerlink" title="普通计算"></a>普通计算</h3><p>最近在写自己的网站的时候，由于对less的认识不深入，写了以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@endwidth:calc(50% - 50px);</div></pre></td></tr></table></figure></p>
+<p>结果，less编译的时候把这玩意当成运算式给直接计算了，成了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@endwidth:calc(0%);</div></pre></td></tr></table></figure></p>
+<p>于是，去查了一下less的用法才发现，原来是less的运算和calc的用法有重叠。所以应该把less编译这一次的计算给去掉。<br>正确写法应该是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@endwidth:calc(~&quot;50% - 50px&quot;);</div></pre></td></tr></table></figure></p>
+<p>也就是在calc里面加上 ~ 。</p>
+<h3 id="有变量参与计算"><a href="#有变量参与计算" class="headerlink" title="有变量参与计算"></a>有变量参与计算</h3><p>以上是可以了，担是当把 50px 换成另一个变量时，又编译出错了。也就是这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">left: calc(~&quot;50% + @endwidth&quot; );</div></pre></td></tr></table></figure></p>
+<p>由于 ~ 能把less编译的这一次计算给去掉，而 @endwith 的值，需要计算两次，所以在去掉的时候，对@endwidth的计算不能去掉。<br>所以应该把 @endwidth 放在 ~ 的范围外面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">left: calc(~&quot;50% +&quot; @endwidth);</div></pre></td></tr></table></figure></p>
+<h3 id="多变量连续计算"><a href="#多变量连续计算" class="headerlink" title="多变量连续计算"></a>多变量连续计算</h3><p>有了上面的解析，多变量计算就明白了，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@gap:10px;</div><div class="line">.init(@i)</div><div class="line">&#123;</div><div class="line">    left:calc(~&quot;50% -&quot;  @gap * @i ~&quot;-&quot; (@i * 2) * 50px) ;</div><div class="line">&#125;</div><div class="line">.box&#123;</div><div class="line">	.init(2);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>也就是，对需要去掉一次计算的(包括计算符)，需要放在 ~ 中，而需要在less编译的时候就计算一次的变量(或者常值)，直接放在 ~ 的范围外面。<br>编译结果，在css文件中可以看到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.box&#123;</div><div class="line">	left:calc( 50% - 200px )</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>calc是css3中一个非常有用的东东，但与less配合使用的时候，需要注意less编译时候的计算问题，根据需要是否需要去掉。其作法就是在不需要less编译的部分使用 ~ 包裹起来，而需要计算的则放在 ~ 的外在，特别需要注意的是运算符是否也需要包含。</p>
+
 
             
             <div class="post-reward">
@@ -172,7 +195,7 @@
             <blockquote>
                 <p>
                 本文地址：
-                <a href="http://wsdever.github.io/2016/10/01/20150321/" target="_blank" rel="external">http://wsdever.github.io/2016/10/01/20150321/</a>
+                <a href="http://wsdever.github.io/2015/05/01/20150321/" target="_blank" rel="external">http://wsdever.github.io/2015/05/01/20150321/</a>
                 </p>
                 <footer><cite><a href="http://wsdever.github.io">@Hexo</a></cite></footer>
             </blockquote>
@@ -180,12 +203,19 @@
             
 <nav class="post-nav">
   
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2016/08/13/20160813/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Html5-canvas-绘制圆环渐变进度条</h4>
+      </a>
+    </div>
+  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/09/10/20160910/" id="post-next" class="post-nav-link">
+      <a href="/2015/03/24/20150324/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">html5-canvas-模仿绘制360水晶球形进度条</h4>
+        <h4 class="title">Jquery无法修改input的type属性的替代解决方法</h4>
       </a>
     </div>
   
@@ -196,7 +226,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="20150321" data-title="20150321" data-url="http://wsdever.github.io/2016/10/01/20150321/index.html"></div>
+	<div class="ds-thread" data-thread-key="20150321" data-title="less中使用css3的calc的正确写法" data-url="http://wsdever.github.io/2015/05/01/20150321/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
