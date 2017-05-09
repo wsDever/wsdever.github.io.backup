@@ -23,6 +23,9 @@ menu:
   github:
     url: https://github.com/wsDever
     target: _blank
+  webs:
+    text: 友链
+    url: /webs
 
 
 rss: /atom.xml
